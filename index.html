@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Silly Stories</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="public/css/styles.css" />
+    <link rel="icon" href="images/favicon.ico">
+  </head>
+
+  <body>
+    
+    <h1 class="title">Silly Stories</h1>
+
+    <p class="description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus
+      nibh sed risus convallis varius. Ut euismod magna sit amet arcu dictum,
+      porta porttitor mi varius. Morbi est lectus, laoreet vitae mauris a,
+      pellentesque consectetur enim. Aenean finibus nibh massa, eu ullamcorper
+      nisi suscipit nec. Donec vel ante placerat, pulvinar est id, auctor nisi.
+      Etiam sit amet massa non eros suscipit interdum. Nulla metus ante,
+      vestibulum id sapien ac, ultrices dapibus nisi.
+    </p>
+    <div id="lastS">
+      <p class="labelLast">Last sentence of the Story:</p>
+
+      <p name="lastSent" class="last-sentence" >
+        There were times of despair, there were times of contentment. 
+        <%= toRender %>
+      </p>
+    </div>
+
+    <div class="box">
+    <form id="form" action="/" method="POST">
+      <textarea
+        class="new-sentence"
+        name="message"
+        placeholder="Your sentence here..."
+      ></textarea>
+      <br>
+      <input type="checkbox" id="checkbox"> 
+      <label for="checkbox">Do you want to receive the complete Story?</label> 
+      <br>
+      <input type="email" name="email" id="email" hidden="true" placeholder="Email:">
+      <script>
+        $( "#checkbox" ).change(function() { 
+           $( "#email" ).toggle( "slow", function(){ 
+        }); 
+       }); 
+      </script>
+     
+      <input class="submit-button" type="submit" value="Submit your part" />
+    </form>
+
+    <div class="box2">
+      <p class="sentences-countdown">Sentences left in the story: <%=sentenceNumber %> / 50</p>
+    </div>
+
+    </div>
+
+    
+    
+  </body>
+</html>

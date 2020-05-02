@@ -1,0 +1,38 @@
+.checkbox-custom {
+    display: none;
+  }
+  
+  .checkbox-custom-label {
+    /* display: inline-block; */
+    position: relative;
+    vertical-align: auto;
+    /* margin: 5px; */
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  /* hex #2b2a2f */
+  .checkbox-custom + .checkbox-custom-label:before {
+    content: '';
+    background: #cfb3d6 ;
+    border-radius: 1px;
+    border: 1px solid #2b2a2f;
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px; height: 10px;
+    padding: 2px; 
+  }
+  
+  .checkbox-custom:checked + .checkbox-custom-label:after {
+    content: "";
+    padding: 2px;
+    position: absolute;
+    width: 1px;
+    height: 4px;
+    border: solid #2b2a2f;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+    top: 1px; left: 5px;
+  }
+  
+  
+  

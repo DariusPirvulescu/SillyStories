@@ -1,0 +1,96 @@
+@import url("components/textarea.css");
+@import url("components/button.css");
+@import url("components/checkbox.css");
+
+body {
+  text-align: center;
+  background-color: #cfb3d6;
+}
+
+.main{
+  font-family: 'Anonymous Pro', monospace;
+  width: 30vw;
+  position: relative;
+  margin: auto;
+}
+
+@media(max-width: 768px){
+  .main{
+    width: 80vw;
+    position: relative;
+    margin: auto;
+  }
+}
+
+.title-img{
+  margin-bottom: 30px;
+  width: 70%;
+  height: 70%;
+}
+
+.label-title{
+  margin-bottom: 5px;
+  text-align: center;
+  
+}
+.label-title p{
+  font-size: 13px;
+  margin: 0 auto;
+}
+
+h4{
+  margin-bottom: 0;
+}
+
+.description {
+  text-align: left;
+  margin-top: 20px;
+  /* padding: 0 70px; */
+  color: gray;
+}
+
+.lastSent-box{
+  border: 1px solid #2b2a2f;
+  text-align: end;
+}
+.last-sentence {
+  /* width: 100%; */
+  margin: auto 0px;
+  padding: 5px;
+  font-size: 14px;
+  font-family: 'Anonymous Pro', monospace;
+  font-weight: 700;
+  text-align: left;
+}
+
+.sentences-countdown{
+  font-size: 13px;
+  display: inline;
+  padding-right: 5px;
+    
+}
+
+#form {
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* #email, #fName */
+#email {
+  margin-top: 5px;
+  background-color: #cfb3d6;
+  border-bottom: 1px solid #2b2a2f;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}
+
+#form p {
+  font-size: 11px;
+}
+
+.img-submit{
+  width: 250px;
+  margin-top: 20px;
+}
