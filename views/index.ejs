@@ -54,7 +54,7 @@
             <%= toRender %>
           </p>
           <p class="sentences-countdown">
-            Sentences left in the story: <%= sencentesLeft %> / 50
+            Sentences left in the story: <%= sencentesLeft %> / 30
           </p>
         </div>
       </div>
@@ -69,14 +69,9 @@
             class="new-sentence"
             name="message"
           ></textarea>
-
           <br />
-          <!-- <input type="checkbox" class="checkbox" />
-          <label for="checkbox">a</label>
-          <label for="checkbox">
-            Want to receive the full story when it's written?
-            </label> -->
-            <div>
+          
+        <div >
           <input id="checkbox" class="checkbox-custom" name="checkbox" type="checkbox">
           <label for="checkbox" class="checkbox-custom-label">
             Want to receive the full story when it's written?
@@ -91,7 +86,8 @@
             hidden="true"
             placeholder="First Name:"
           /> -->
-            <div>
+        <div id="email-input" hidden>
+
           <label for="email">Your email:</label>
           <input
             type="email"
@@ -99,19 +95,32 @@
             id="email"
           />
           <p>(We promise only to send you the story and nothing else.)</p>
-          <!-- <script>
+        </div>
+          <script>
             $("#checkbox").change(function () {
-              $("#email").toggle("slow", function () {});
+              $("#email-input").toggle("slow", "linear", function () {});
 
-              $("#fName").toggle("slow", function () {});
+              //$("#fName").toggle("slow", function () {});
             });
-          </script> -->
+          </script>
           <br>
           <input type="image" src="/images/Untitled_Artwork.png" class="img-submit" alt="image-submit" />
-        </div>
-          
         </form>
+        <img class="title-img" src="images/Silly_Archive_Title.jpg" alt="Silly Archive Title">
 
+        <div class="label-title">
+          <h4>Story #1</h4>
+        </div>
+        <% story.forEach((part) =>{ %> 
+         <% if (part.id%2 === 0){ %> 
+            <p class="even-s"> <%= part.text %></p>
+          <% } else { %> 
+            <p class="odd-s" > <%= part.text %></p>
+              <% } %> 
+            <% }) %> 
+
+        <!-- <p class="even-s"> <%= story %>  saf asfa</p>
+        <p class="odd-s" >  afsasas </p> -->
         </div>
       </div>
     </div>

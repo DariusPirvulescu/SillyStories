@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -14,9 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   useUnifiedTopology: true
 // })
 
-
 mongoose.connect(
-  "mongodb+srv://dario-admin:" + process.env.DB_PASS + "@cluster0-bhjc9.mongodb.net/sillyStories",
+  "mongodb+srv://dario-admin:" +
+    process.env.DB_PASS +
+    "@cluster0-bhjc9.mongodb.net/sillyStories",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -45,6 +46,7 @@ const sentence1 = new Sentence({
 
 app.get("/", function (req, res) {
   const newest = Sentence.findOne().sort({ _id: -1 }).limit(1);
+
   Sentence.find({}, function (err, results) {
     if (!err) {
       if (results.length === 0) {
@@ -56,13 +58,49 @@ app.get("/", function (req, res) {
         newest.exec((err, data) => {
           const newestDoc = data.text;
           //console.log("Data iD: " + data.id);
-          sLeft = 50 - data.id;
-          res.render("index", { toRender: newestDoc, sencentesLeft: sLeft });
+          sLeft = 12 - data.id;
+          /////////////////////////////////////////
+          // if(sLeft === 0){
+          let oddId = [];
+          let evenId = [];
+            Sentence.find()
+            .select("text id")
+            // .skip(perPage * page)
+            // .limit(5)
+          
+            .exec(function (err, events) {
+              // console.log(events)
+              
+              res.render("index", { toRender: newestDoc, sencentesLeft: sLeft, story: events });
+            });
+          
+
+            //////////////////////////////////////////////////
+          // }
+          // res.render("index", { toRender: newestDoc, sencentesLeft: sLeft, evenSent: evenId, oddSent: oddId });
         });
       }
     }
   });
 });
+
+// Sentence.find()
+//   .select("text id")
+//   // .skip(perPage * page)
+//   // .limit(5)
+
+//   .exec(function (err, events) {
+//     // console.log(events)
+//     events.forEach((one) => {
+//       if (one.id % 2 === 0) {
+//         console.log("even");
+//       } else {
+//         console.log("odd");
+//       }
+//     });
+//   });
+
+
 
 app.post("/", function (req, res) {
   const message = req.body.message;
@@ -84,14 +122,11 @@ app.post("/", function (req, res) {
           console.log("saved new Message " + newMessage);
         }
       });
-      
     }
   });
   res.redirect("/");
   console.log(message);
 });
-
-
 
 let port = process.env.PORT;
 if (port == null || port == "") {
