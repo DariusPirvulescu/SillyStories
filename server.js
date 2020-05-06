@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // mongoose.connect("mongodb://localhost:27017/Silly", {
 //   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// })
+//   useUnifiedTopology: true,
+// });
 
 mongoose.connect(
   "mongodb+srv://dario-admin:" +
@@ -38,11 +38,26 @@ const messageSchema = new mongoose.Schema({
   name: "String",
   email: "String",
 });
+
 const Sentence = mongoose.model("Sentence", messageSchema);
-const sentence1 = new Sentence({
-  id: 1,
-  text: "There were times of despair, there were times of contentment.",
+
+// const sentence1 = new Sentence({
+//   id: 1,
+//   text: "fjntibkkhkhkhkhkhkkhkh",
+// });
+
+
+const fullStoriesSchema = new mongoose.Schema({
+  id: Number,
+  name: "String",
+  parts: {
+    type: [messageSchema],
+    required: true,
+  },
 });
+
+const Story = mongoose.model("Story", fullStoriesSchema);
+
 
 app.get("/", function (req, res) {
   const newest = Sentence.findOne().sort({ _id: -1 }).limit(1);
@@ -50,56 +65,66 @@ app.get("/", function (req, res) {
   Sentence.find({}, function (err, results) {
     if (!err) {
       if (results.length === 0) {
-        Sentence.insertMany(sentence1, function (err) {});
-        res.redirect("/");
-      } else if (results.length === 1) {
-        res.render("index", { toRender: sentence1.text, sencentesLeft: sLeft });
+        res.render("fullstory");
+      } else if (results.length === 20) {
+          /////////////////////////////////////////////
+          Story.find({}, function (err, record) {
+            if (err) {
+              console.log(err);
+            } else {
+              const story = new Story({
+                id: record.length + 1,
+                name: `Story#${record.length + 1}`,
+                parts: results,
+              });
+              // Story.deleteMany(function(err){
+              //   err? console.log(err): null
+              // })
+    
+              story.save(function (err, saved) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  Sentence.deleteMany(function (err) {
+                    err ? console.log(err) : null;
+                  });
+                  console.log("saved new Story, deleted the sentences");
+                  // res.redirect("/")
+                  res.render("fullstory");
+                }
+              });
+            }
+            
+          });
+          //////////////////////////////////////////////////////
       } else {
+        // console.log("RESULTS LENGTH IN ROOT ROUTE : " + results.length);
         newest.exec((err, data) => {
           const newestDoc = data.text;
-          //console.log("Data iD: " + data.id);
-          sLeft = 12 - data.id;
-          /////////////////////////////////////////
-          // if(sLeft === 0){
-          let oddId = [];
-          let evenId = [];
-            Sentence.find()
-            .select("text id")
-            // .skip(perPage * page)
-            // .limit(5)
-          
-            .exec(function (err, events) {
-              // console.log(events)
-              
-              res.render("index", { toRender: newestDoc, sencentesLeft: sLeft, story: events });
-            });
-          
-
-            //////////////////////////////////////////////////
-          // }
-          // res.render("index", { toRender: newestDoc, sencentesLeft: sLeft, evenSent: evenId, oddSent: oddId });
+          sLeft = 20 - data.id;
+          // console.log(sLeft.length);
+          res.render("index", { toRender: newestDoc, sencentesLeft: sLeft });
         });
       }
     }
   });
 });
 
-// Sentence.find()
-//   .select("text id")
-//   // .skip(perPage * page)
-//   // .limit(5)
+// app.get("/fullstory");
 
-//   .exec(function (err, events) {
-//     // console.log(events)
-//     events.forEach((one) => {
-//       if (one.id % 2 === 0) {
-//         console.log("even");
-//       } else {
-//         console.log("odd");
-//       }
-//     });
-//   });
 
+app.get("/stories", function (req, res) {
+  Sentence.find()
+    .select("text id -_id")
+    .limit(30)
+    .exec(function (err, results) {
+      Story.find().exec(function (err, recordedStories) {
+        err
+          ? console.log(err)
+          : res.render("stories", { stories: recordedStories });
+      });
+    });
+});
 
 
 app.post("/", function (req, res) {
@@ -119,13 +144,13 @@ app.post("/", function (req, res) {
 
       newMessage.save(function (err) {
         if (!err) {
-          console.log("saved new Message " + newMessage);
         }
       });
     }
+    // console.log("RESULTS IN POST ROUTE: " + results.length);
+      res.redirect("/");
+
   });
-  res.redirect("/");
-  console.log(message);
 });
 
 let port = process.env.PORT;
@@ -133,5 +158,5 @@ if (port == null || port == "") {
   port = 3000;
 }
 app.listen(port, function () {
-  console.log("Server has started");
+  console.log("Server has started, port 3000");
 });

@@ -1,85 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="Silly Stories" />
-    <meta property="og:image" content="images/favicon.ico" />
-    <meta property="og:description" content="A game description" />
 
-    <title>Silly Stories</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content='SillyStories' />
+  <meta property="og:image" content="images/favicon.ico" />
+  <meta property="og:description" content='A collaborative story writing' />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="icon" href="images/favicon.ico" />
-  </head>
+  <title>Silly Stories</title>
 
-  <body>
-    <div class="main">
-      <img
-        class="title-img"
-        src="images/Silly_Stories_Title.png"
-        alt="Silly Stories Title"
-      />
-      
-      <div class="label-title">
-        <h4>HOW TO PLAY:</h4>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="images/favicon.ico" />
+</head>
+
+<body>
+  <div class="main">
+    <img class="title-img" src="images/Silly_Stories_Title.png" alt="Silly Stories Title" />
+
+    <div class="label-title">
+      <h4>HOW TO PLAY:</h4>
+    </div>
+    <p class="description">
+      <b>1.</b> In this creative writing game, you and others collectively
+      write a story, sentence by sentence. The thing is, you can only see the
+      previous sentence of the story before you write yours. Read the guide
+      sentence below and write the sentence you think comes next in the story.
+      <br />
+      <b>2.</b> Press enter, and your sentence will move into the guiding
+      sentence spot for the next person to read. Voila! You’ve participated.
+      <br />
+      <b>3.</b> If you want to receive the full story when it’s done, check
+      the box, enter your email and we’ll send it to you!
+      <br />
+    </p>
+
+    <div class="label-title">
+      <h4>LAST SENTENCE:</h4>
+      <p>(Use this to guide your sentence)</p>
+
+
+      <div class="lastSent-box">
+        <p name="lastSent" class="last-sentence">
+          <!-- There were times of despair, there were times of contentment.  -->
+          <%= toRender %>
+        </p>
+        <p class="sentences-countdown">
+          Sentences left in the story: <%= sencentesLeft %> / 20
+        </p>
       </div>
-      <p class="description">
-        <b>1.</b> In this creative writing game, you and others collectively
-        write a story, sentence by sentence. The thing is, you can only see the
-        previous sentence of the story before you write yours. Read the guide
-        sentence below and write the sentence you think comes next in the story.
-        <br />
-        <b>2.</b> Press enter, and your sentence will move into the guiding
-        sentence spot for the next person to read. Voila! You’ve participated.
-        <br />
-        <b>3.</b> If you want to receive the full story when it’s done, check
-        the box, enter your email and we’ll send it to you! 
-        <br />
-      </p>
-      
+    </div>
+
+    <div class="box">
+      <form id="form" action="/" method="POST">
         <div class="label-title">
-          <h4>LAST SENTENCE:</h4>
-          <p>(Use this to guide your sentence)</p>
-       
-
-        <div class="lastSent-box">
-          <p name="lastSent" class="last-sentence">
-            <!-- There were times of despair, there were times of contentment.  -->
-            <%= toRender %>
-          </p>
-          <p class="sentences-countdown">
-            Sentences left in the story: <%= sencentesLeft %> / 30
-          </p>
+          <h4>YOUR SENTENCE:</h4>
         </div>
-      </div>
 
-      <div class="box">
-        <form id="form" action="/" method="POST">
-          <div class="label-title">
-            <h4>YOUR SENTENCE:</h4>
-          </div>
-          
-          <textarea
-            class="new-sentence"
-            name="message"
-          ></textarea>
-          <br />
-          
-        <div >
+        <textarea class="new-sentence" name="message"></textarea>
+        <br />
+
+        <div>
           <input id="checkbox" class="checkbox-custom" name="checkbox" type="checkbox">
           <label for="checkbox" class="checkbox-custom-label">
             Want to receive the full story when it's written?
           </label>
         </div>
-            
-          <br />
-          <!-- <input
+
+        <br />
+        <!-- <input
             type="text"
             name="fName"
             id="fName"
@@ -89,40 +80,28 @@
         <div id="email-input" hidden>
 
           <label for="email">Your email:</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-          />
+          <input type="email" name="email" id="email" />
           <p>(We promise only to send you the story and nothing else.)</p>
         </div>
-          <script>
-            $("#checkbox").change(function () {
-              $("#email-input").toggle("slow", "linear", function () {});
+        <script>
+          $("#checkbox").change(function () {
+            $("#email-input").toggle("slow", "linear", function () { });
 
-              //$("#fName").toggle("slow", function () {});
-            });
-          </script>
-          <br>
-          <input type="image" src="/images/Untitled_Artwork.png" class="img-submit" alt="image-submit" />
-        </form>
+            //$("#fName").toggle("slow", function () {});
+          });
+        </script>
+        <br>
+
+        <input type="image" src="/images/Untitled_Artwork.png" class="img-submit" alt="Image Submit, Send silliness" />
+      </form>
+
+      <a href="/stories">
         <img class="title-img" src="images/Silly_Archive_Title.jpg" alt="Silly Archive Title">
+      </a>
 
-        <div class="label-title">
-          <h4>Story #1</h4>
-        </div>
-        <% story.forEach((part) =>{ %> 
-         <% if (part.id%2 === 0){ %> 
-            <p class="even-s"> <%= part.text %></p>
-          <% } else { %> 
-            <p class="odd-s" > <%= part.text %></p>
-              <% } %> 
-            <% }) %> 
-
-        <!-- <p class="even-s"> <%= story %>  saf asfa</p>
-        <p class="odd-s" >  afsasas </p> -->
-        </div>
-      </div>
     </div>
-  </body>
+  </div>
+  </div>
+</body>
+
 </html>

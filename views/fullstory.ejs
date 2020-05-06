@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Story Completed</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="images/favicon.ico" />
+  </head>
+
+  <body>
+    <div class="main">
+        <div class="label-title">
+        <h4>Yet another complete story</h4>
+        </div>
+        <br>
+
+        <div class="label-title">
+          <a href="./stories">
+          <h4>See the complete stories</h4>
+        </a>
+        </div>
+        <br>
+
+        <div class="label-title">
+          <h4>Write the first sentence of the story</h4>
+        </a>
+        </div>
+
+        <form id="form" action="/" method="POST">
+          <div class="label-title">
+            <h4>YOUR FIRST SENTENCE:</h4>
+          </div>
+  
+          <textarea class="new-sentence" name="message"></textarea>
+          <br />
+  
+          <div>
+            <input id="checkbox" class="checkbox-custom" name="checkbox" type="checkbox">
+            <label for="checkbox" class="checkbox-custom-label">
+              Want to receive the full story when it's written?
+            </label>
+          </div>
+  
+          <br />
+          <!-- <input
+              type="text"
+              name="fName"
+              id="fName"
+              hidden="true"
+              placeholder="First Name:"
+            /> -->
+          <div id="email-input" hidden>
+  
+            <label for="email">Your email:</label>
+            <input type="email" name="email" id="email" />
+            <p>(We promise only to send you the story and nothing else.)</p>
+          </div>
+          <script>
+            $("#checkbox").change(function () {
+              $("#email-input").toggle("slow", "linear", function () { });
+  
+              //$("#fName").toggle("slow", function () {});
+            });
+          </script>
+          <br>
+  
+          <input type="image" src="/images/Untitled_Artwork.png" class="img-submit" alt="Image Submit, Send silliness" />
+        </form>
+
+    </div>
+  </body>
+</html>
