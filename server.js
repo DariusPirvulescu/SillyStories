@@ -5,15 +5,19 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 
+const story = require("./modules/create_story.js");
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//// Local DB
 // mongoose.connect("mongodb://localhost:27017/Silly", {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
 
+//// Remote DB
 mongoose.connect(
   "mongodb+srv://dario-admin:" +
     process.env.DB_PASS +
@@ -24,11 +28,10 @@ mongoose.connect(
   }
 );
 
-//conection test
-//   var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-//   // we're connected!
+//// DB conection test
+// var db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", function () {
 //   console.log("db connected");
 // });
 
@@ -41,12 +44,6 @@ const messageSchema = new mongoose.Schema({
 
 const Sentence = mongoose.model("Sentence", messageSchema);
 
-// const sentence1 = new Sentence({
-//   id: 1,
-//   text: "fjntibkkhkhkhkhkhkkhkh",
-// });
-
-
 const fullStoriesSchema = new mongoose.Schema({
   id: Number,
   name: "String",
@@ -58,51 +55,23 @@ const fullStoriesSchema = new mongoose.Schema({
 
 const Story = mongoose.model("Story", fullStoriesSchema);
 
-
 app.get("/", function (req, res) {
-  const newest = Sentence.findOne().sort({ _id: -1 }).limit(1);
+  const newest = Sentence.findOne().sort({ _id: -1 });
 
   Sentence.find({}, function (err, results) {
     if (!err) {
       if (results.length === 0) {
         res.render("fullstory");
       } else if (results.length === 20) {
-          /////////////////////////////////////////////
-          Story.find({}, function (err, record) {
-            if (err) {
-              console.log(err);
-            } else {
-              const story = new Story({
-                id: record.length + 1,
-                name: `Story#${record.length + 1}`,
-                parts: results,
-              });
-              // Story.deleteMany(function(err){
-              //   err? console.log(err): null
-              // })
-    
-              story.save(function (err, saved) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  Sentence.deleteMany(function (err) {
-                    err ? console.log(err) : null;
-                  });
-                  console.log("saved new Story, deleted the sentences");
-                  // res.redirect("/")
-                  res.render("fullstory");
-                }
-              });
-            }
-            
-          });
-          //////////////////////////////////////////////////////
+        Story.find({}, function (err, record) {
+          err
+            ? console.log(err)
+            : story.createNewStory(record, results, Story, Sentence, res);
+        });
       } else {
-        // console.log("RESULTS LENGTH IN ROOT ROUTE : " + results.length);
         newest.exec((err, data) => {
           const newestDoc = data.text;
           sLeft = 20 - data.id;
-          // console.log(sLeft.length);
           res.render("index", { toRender: newestDoc, sencentesLeft: sLeft });
         });
       }
@@ -110,22 +79,13 @@ app.get("/", function (req, res) {
   });
 });
 
-// app.get("/fullstory");
-
-
 app.get("/stories", function (req, res) {
-  Sentence.find()
-    .select("text id -_id")
-    .limit(30)
-    .exec(function (err, results) {
-      Story.find().exec(function (err, recordedStories) {
-        err
-          ? console.log(err)
-          : res.render("stories", { stories: recordedStories });
-      });
-    });
+  Story.find().exec(function (err, recordedStories) {
+    err
+      ? console.log(err)
+      : res.render("stories", { stories: recordedStories });
+  });
 });
-
 
 app.post("/", function (req, res) {
   const message = req.body.message;
@@ -142,14 +102,9 @@ app.post("/", function (req, res) {
         email: eMail,
       });
 
-      newMessage.save(function (err) {
-        if (!err) {
-        }
-      });
+      newMessage.save(function (err) {});
     }
-    // console.log("RESULTS IN POST ROUTE: " + results.length);
-      res.redirect("/");
-
+    res.redirect("/");
   });
 });
 
