@@ -24,14 +24,16 @@
         <h4>Story #<%=story.id %></h4>
       </div>
       <div class="stories-text">
-        <% story.parts.forEach((part) =>{ %> <% if ((part.id) %2 === 0){ %>
-        <p class="even-s"><%= part.text %></p>
-        <% } else { %>
-        <p class="odd-s"><%= part.text %></p>
-        <% } %> <% }) %>
+        <% story.parts.forEach((part) =>{ %> 
+          <% if ((part.id) %2 === 0){ %>
+          <p class="even-s"><%= part.text %></p>
+          <% } else { %>
+          <p class="odd-s"><%= part.text %></p>
+          <% } %> 
+        <% }) %>
       </div>
       <img class="draw-line" src="images/Line.png " alt="separating line" />
-
+      
       <% }) %>
     </div>
   </body>

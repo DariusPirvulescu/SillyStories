@@ -18,7 +18,7 @@
 
 <body>
   <div class="main">
-    <img class="title-img" src="images/Silly_Stories_Title.png" alt="Silly Stories Title" />
+    <img class="title-img" src="images/silly_stories_title.png" alt="Silly Stories Title" />
 
     <div class="label-title">
       <h4>HOW TO PLAY:</h4>
@@ -41,10 +41,8 @@
       <h4>LAST SENTENCE:</h4>
       <p>(Use this to guide your sentence)</p>
 
-
       <div class="lastSent-box">
         <p name="lastSent" class="last-sentence">
-          <!-- There were times of despair, there were times of contentment.  -->
           <%= toRender %>
         </p>
         <p class="sentences-countdown">
@@ -58,25 +56,15 @@
         <div class="label-title">
           <h4>YOUR SENTENCE:</h4>
         </div>
-
         <textarea class="new-sentence" name="message"></textarea>
         <br />
-
         <div>
           <input id="checkbox" class="checkbox-custom" name="checkbox" type="checkbox">
           <label for="checkbox" class="checkbox-custom-label">
             Want to receive the full story when it's written?
           </label>
         </div>
-
         <br />
-        <!-- <input
-            type="text"
-            name="fName"
-            id="fName"
-            hidden="true"
-            placeholder="First Name:"
-          /> -->
         <div id="email-input" hidden>
 
           <label for="email">Your email:</label>
@@ -86,17 +74,14 @@
         <script>
           $("#checkbox").change(function () {
             $("#email-input").toggle("slow", "linear", function () { });
-
-            //$("#fName").toggle("slow", function () {});
           });
         </script>
         <br>
-
-        <input type="image" src="/images/Untitled_Artwork.png" class="img-submit" alt="Image Submit, Send silliness" />
+        <input type="image" src="/images/send_button.png" class="img-submit" alt="Image Submit, Send silliness" />
       </form>
 
       <a href="/stories">
-        <img class="title-img" src="images/Silly_Archive_Title.jpg" alt="Silly Archive Title">
+        <img class="title-img" src="images/silly_archive.png" alt="Silly Archive">
       </a>
 
     </div>
