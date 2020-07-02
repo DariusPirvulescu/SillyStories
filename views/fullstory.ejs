@@ -23,7 +23,7 @@
 
     <div class="label-title">
       <a href="./stories">
-        <img class="title-img" src="images/silly_archive.png" alt="Silly Archive">
+        <img class="title-img title-full" src="images/silly_archive.png" alt="Silly Archive">
       </a>
     </div>
     <br>
@@ -45,20 +45,23 @@
         </label>
       </div>
       <br />
-      <div id="email-input" hidden>
-        <label for="email">Your email:</label>
-        <input type="email" name="email" id="email" />
-        <p>(We promise only to send you the story and nothing else.)</p>
+      <div class="email-placeholder">
+        <div id="email-input" hidden>
+          <label for="email">Your email:</label>
+          <input type="email" name="email" id="email" />
+          <p>(We promise only to send you the story and nothing else.)</p>
+        </div>
       </div>
-      <script>
-        $("#checkbox").change(function () {
-          $("#email-input").toggle("slow", "linear", function () { });
-            //$("#fName").toggle("slow", function () {});
-        });
-      </script>
+      
       <br>
       <input type="image" src="/images/send_button.png" class="img-submit" alt="Image Submit, Send silliness" />
     </form>
   </div>
+  <script>
+    $("#checkbox").change(function () {
+      $("#email-input").toggle("slow", "linear", function () { });
+        //$("#fName").toggle("slow", function () {});
+    });
+  </script>
 </body>
 </html>

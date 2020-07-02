@@ -65,17 +65,13 @@
           </label>
         </div>
         <br />
-        <div id="email-input" hidden>
-
-          <label for="email">Your email:</label>
-          <input type="email" name="email" id="email" />
-          <p>(We promise only to send you the story and nothing else.)</p>
+        <div class="email-placeholder">
+          <div id="email-input" hidden>
+            <label for="email">Your email:</label>
+            <input type="email" name="email" id="email" />
+            <p>(We promise only to send you the story and nothing else.)</p>
+          </div>
         </div>
-        <script>
-          $("#checkbox").change(function () {
-            $("#email-input").toggle("slow", "linear", function () { });
-          });
-        </script>
         <br>
         <input type="image" src="/images/send_button.png" class="img-submit" alt="Image Submit, Send silliness" />
       </form>
@@ -87,6 +83,11 @@
     </div>
   </div>
   </div>
+  <script>
+    $("#checkbox").change(function () {
+      $("#email-input").toggle("slow", "linear", function () { });
+    });
+  </script>
 </body>
 
 </html>

@@ -31,6 +31,10 @@ body {
   height: 70%;
 }
 
+.title-full {
+  margin-bottom: 0;
+}
+
 .label-title{
   margin-bottom: 5px;
   text-align: center;
@@ -45,7 +49,6 @@ h4{
   margin-bottom: 0;
 }
 
-/*******************     ROOT      */
 .description {
   text-align: left;
   margin: 20px auto 40px auto;
@@ -79,6 +82,10 @@ h4{
 }
 
 /* #email, #fName */
+.email-placeholder {
+  height: 25px;
+}
+
 #email {
   margin-top: 5px;
   background-color: #cfb3d6;
