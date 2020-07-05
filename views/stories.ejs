@@ -16,11 +16,13 @@
   <body>
     <div class="main">
       <a href="/">
-        <img class="title-img" src="images/silly_stories_title.png" alt="Silly Stories Title" /></a>
+        <img class="title-img" src="images/silly_stories_title.png" alt="Silly Stories Title" />
+      </a>
+      <% let count = 0 %>
       <% stories.forEach((story) => { %>
-
+      
       <div class="label-title">
-        <h4>Story #<%=story.id %></h4>
+        <h4>Story #<%= count += 1 %></h4>
       </div>
       <div class="stories-text">
         <% story.parts.forEach((part) =>{ %> 
