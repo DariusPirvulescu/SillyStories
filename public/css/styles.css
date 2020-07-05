@@ -59,6 +59,8 @@ h4{
 .lastSent-box{
   border: 1px solid #2b2a2f;
   text-align: end;
+  margin-top: 5px;
+  padding-bottom: 3px;
 }
 .last-sentence {
   /* width: 100%; */
@@ -68,6 +70,7 @@ h4{
   font-family: 'Anonymous Pro', monospace;
   font-weight: 700;
   text-align: left;
+  overflow-wrap: break-word;
 }
 
 .sentences-countdown{
