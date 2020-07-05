@@ -12,21 +12,21 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //// Local DB
-mongoose.connect("mongodb://localhost:27017/Silly", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://localhost:27017/Silly", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 //// Remote DB
-// mongoose.connect(
-//   "mongodb+srv://dario-admin:" +
-//     process.env.DB_PASS +
-//     "@cluster0-bhjc9.mongodb.net/sillyStories",
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   }
-// );
+mongoose.connect(
+  "mongodb+srv://dario-admin:" +
+    process.env.DB_PASS +
+    "@cluster0-bhjc9.mongodb.net/sillyStories",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 //// DB conection test
 // var db = mongoose.connection;
