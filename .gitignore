@@ -40,3 +40,4 @@ Thumbs.db
 npm-debug.log
 .DS_Store
 /*.env
+notes.txt
