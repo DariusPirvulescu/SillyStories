@@ -1,27 +1,28 @@
-<%- include("partials/_header") %> 
+<%- include("partials/_header") %>
 
-    <div class="main">
-      <a href="/">
-        <img class="title-img" src="images/silly_stories_title.png" alt="Silly Stories Title" />
-      </a>
-      <% let count = 0 %>
-      <% stories.forEach((story) => { %>
-      
-      <div class="label-title">
-        <h4>Story #<%= count += 1 %></h4>
-      </div>
-      <div class="stories-text">
-        <% story.parts.forEach((part) =>{ %> 
-          <% if ((part.id) %2 === 0){ %>
-          <p class="even-s"><%= part.text %></p>
-          <% } else { %>
-          <p class="odd-s"><%= part.text %></p>
-          <% } %> 
-        <% }) %>
-      </div>
-      <img class="draw-line" src="images/Line.png " alt="separating line" />
+<div class="main">
+  <a href="/">
+    <img class="title-img" src="images/silly_stories_title.png" alt="Silly Stories Title" />
+  </a>
+  <% let count = 0 %>
+  <% stories.forEach((story) => { %>
 
-      <% }) %>
-    </div>
-  </body>
+  <div class="label-title">
+    <h4>Story #<%= count += 1 %></h4>
+  </div>
+  <div class="stories-text">
+    <% story.parts.forEach((part) =>{ %>
+    <% if ((part.id) %2 === 0){ %>
+    <p class="even-s"><%= part.text %></p>
+    <% } else { %>
+    <p class="odd-s"><%= part.text %></p>
+    <% } %>
+    <% }) %>
+  </div>
+  <img class="draw-line" src="images/Line.png " alt="separating line" />
+
+  <% }) %>
+</div>
+</body>
+
 </html>

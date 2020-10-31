@@ -1,76 +1,76 @@
-<%- include("partials/_header") %> 
+<%- include("partials/_header") %>
 
-  <div class="main">
-    <img class="title-img" src="images/silly_stories_title.png" alt="Silly Stories Title" />
+<div class="main">
+  <img class="title-img" src="images/silly_stories_title.png" alt="Silly Stories Title" />
 
-    <div class="label-title">
-      <h4>HOW TO PLAY:</h4>
+  <div class="label-title">
+    <h4>HOW TO PLAY:</h4>
+  </div>
+  <p class="description">
+    <b>1.</b> In this creative writing game, you and others collectively
+    write a story, sentence by sentence. The thing is, you can only see the
+    previous sentence of the story before you write yours. Read the guide
+    sentence below and write the sentence you think comes next in the story.
+    <br />
+    <b>2.</b> Press enter, and your sentence will move into the guiding
+    sentence spot for the next person to read. Voila! You’ve participated.
+    <br />
+    <b>3.</b> If you want to receive the full story when it’s done, check
+    the box, enter your email and we’ll send it to you!
+    <br />
+  </p>
+
+  <div class="label-title">
+    <h4>LAST SENTENCE:</h4>
+    <p>(Use this to guide your sentence)</p>
+
+    <div class="lastSent-box">
+      <p name="lastSent" class="last-sentence">
+        <%= toRender %>
+      </p>
+      <p class="sentences-countdown">
+        Sentences left in the story: <%= sencentesLeft %> / 20
+      </p>
     </div>
-    <p class="description">
-      <b>1.</b> In this creative writing game, you and others collectively
-      write a story, sentence by sentence. The thing is, you can only see the
-      previous sentence of the story before you write yours. Read the guide
-      sentence below and write the sentence you think comes next in the story.
-      <br />
-      <b>2.</b> Press enter, and your sentence will move into the guiding
-      sentence spot for the next person to read. Voila! You’ve participated.
-      <br />
-      <b>3.</b> If you want to receive the full story when it’s done, check
-      the box, enter your email and we’ll send it to you!
-      <br />
-    </p>
+  </div>
 
-    <div class="label-title">
-      <h4>LAST SENTENCE:</h4>
-      <p>(Use this to guide your sentence)</p>
-
-      <div class="lastSent-box">
-        <p name="lastSent" class="last-sentence">
-          <%= toRender %>
-        </p>
-        <p class="sentences-countdown">
-          Sentences left in the story: <%= sencentesLeft %> / 20
-        </p>
+  <div class="box">
+    <form id="form" action="/" method="POST">
+      <div class="label-title">
+        <h4>YOUR SENTENCE:</h4>
       </div>
-    </div>
-
-    <div class="box">
-      <form id="form" action="/" method="POST">
-        <div class="label-title">
-          <h4>YOUR SENTENCE:</h4>
+      <textarea class="new-sentence" name="message" minlength="10" required></textarea>
+      <br />
+      <div>
+        <input id="checkbox" class="checkbox-custom" name="checkbox" type="checkbox">
+        <label for="checkbox" class="checkbox-custom-label">
+          Want to receive the full story when it's written?
+        </label>
+      </div>
+      <br />
+      <div class="email-placeholder">
+        <div id="email-input" hidden>
+          <label for="email">Your email:</label>
+          <input type="email" name="email" id="email" />
+          <p>(We promise only to send you the story and nothing else.)</p>
         </div>
-        <textarea class="new-sentence" name="message" minlength="10" required ></textarea>
-        <br />
-        <div>
-          <input id="checkbox" class="checkbox-custom" name="checkbox" type="checkbox">
-          <label for="checkbox" class="checkbox-custom-label">
-            Want to receive the full story when it's written?
-          </label>
-        </div>
-        <br />
-        <div class="email-placeholder">
-          <div id="email-input" hidden>
-            <label for="email">Your email:</label>
-            <input type="email" name="email" id="email" />
-            <p>(We promise only to send you the story and nothing else.)</p>
-          </div>
-        </div>
-        <br>
-        <input type="image" src="/images/send_button.png" class="img-submit" alt="Image Submit, Send silliness" />
-      </form>
+      </div>
+      <br>
+      <input type="image" src="/images/send_button.png" class="img-submit" alt="Image Submit, Send silliness" />
+    </form>
 
-      <a href="/stories">
-        <img class="title-img" src="images/silly_archive.png" alt="Silly Archive">
-      </a>
+    <a href="/stories">
+      <img class="title-img" src="images/silly_archive.png" alt="Silly Archive">
+    </a>
 
-    </div>
   </div>
-  </div>
-  <script>
-    $("#checkbox").change(function () {
-      $("#email-input").toggle("slow", "linear", function () { });
-    });
-  </script>
+</div>
+</div>
+<script>
+  $("#checkbox").change(function () {
+    $("#email-input").toggle("slow", "linear", function () { });
+  });
+</script>
 </body>
 
 </html>
