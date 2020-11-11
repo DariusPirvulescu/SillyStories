@@ -1,31 +1,37 @@
 @import url("components/textarea.css");
 @import url("components/button.css");
 @import url("components/checkbox.css");
+@import url("components/email.css");
+@import url("components/stories.css");
 
 body {
   text-align: center;
   background-color: #cfb3d6;
 }
 
-.main{
-  font-family: 'Anonymous Pro', monospace;
+h4 {
+  margin-bottom: 0;
+}
+
+.main {
+  font-family: "Anonymous Pro", monospace;
   width: 30vw;
   position: relative;
   margin: auto;
 }
 
-@media(max-width: 768px){
-  .main{
+@media (max-width: 768px) {
+  .main {
     width: 80vw;
     position: relative;
     margin: auto;
   }
-  .draw-line{
+  .draw-line {
     width: 45%;
   }
 }
 
-.title-img{
+.title-img {
   margin-bottom: 30px;
   width: 70%;
   height: 70%;
@@ -35,18 +41,13 @@ body {
   margin-bottom: 0;
 }
 
-.label-title{
+.label-title {
   margin-bottom: 5px;
   text-align: center;
-  
 }
-.label-title p{
+.label-title p {
   font-size: 13px;
   margin: 0 auto;
-}
-
-h4{
-  margin-bottom: 0;
 }
 
 .description {
@@ -56,7 +57,7 @@ h4{
   color: gray;
 }
 
-.lastSent-box{
+.lastSent-box {
   border: 1px solid #2b2a2f;
   text-align: end;
   margin-top: 5px;
@@ -67,16 +68,16 @@ h4{
   margin: auto 0px;
   padding: 5px;
   font-size: 14px;
-  font-family: 'Anonymous Pro', monospace;
+  font-family: "Anonymous Pro", monospace;
   font-weight: 700;
   text-align: left;
   overflow-wrap: break-word;
 }
 
-.sentences-countdown{
+.sentences-countdown {
   font-size: 13px;
   display: inline;
-  padding-right: 5px; 
+  padding-right: 5px;
 }
 
 #form {
@@ -84,41 +85,11 @@ h4{
   margin-top: 30px;
 }
 
-/* #email, #fName */
-.email-placeholder {
-  height: 25px;
-}
-
-#email {
-  margin-top: 5px;
-  background-color: #cfb3d6;
-  border-bottom: 1px solid #2b2a2f;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  outline: none;
-}
-
 #form p {
   font-size: 11px;
 }
 
-.img-submit{
+.img-submit {
   width: 250px;
   margin-top: 20px;
-}
-
-/*******************     FULL-STORIES      */
-/* .stories-text{
-  text-align: left; 
-} */
-.odd-s{
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bolder;
-}
-
-.main .draw-line{
-  /* width: 60%; */
-  width: 200px;
-
 }
