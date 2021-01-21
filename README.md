@@ -8,7 +8,7 @@ The next user is being shown the new-story page and can choose whether to see al
 Users are able to decide if they wanted to receive the complete story via email.
 
 -------------------
-[SillyStories](https://silly-stories-1234.herokuapp.com/ "CTRL + click to open in new tab")
+[SillyStories live](https://silly-stories-1234.herokuapp.com/ "CTRL + click to open in new tab")
 
 ### Built with:
 - Node.js
